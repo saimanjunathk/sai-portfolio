@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sai Manjunath Kusupati | Data Scientist & Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* ── RESET & BASE ── */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary:    #0a0e1a;
+            --bg-secondary:  #0f1629;
+            --bg-card:       #141d35;
+            --accent-blue:   #00d4ff;
+            --accent-purple: #7c3aed;
+            --accent-green:  #10b981;
+            --text-primary:  #f0f4ff;
+            --text-secondary:#8892a4;
+            --border:        #1e2d4a;
+            --gradient:      linear-gradient(135deg, #00d4ff, #7c3aed);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── SCROLLBAR ── */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 3px; }
+
+        /* ── NAVIGATION ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent-blue); }
+
+        /* ── SECTIONS ── */
+        section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .section-title span { color: var(--accent-blue); }
+
+        /* ── HERO ── */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .hero-content { max-width: 700px; }
+
+        .hero-greeting {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-name {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .hero-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 550px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* ── ABOUT ── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-text p strong { color: var(--text-primary); }
+
+        .about-info { display: flex; flex-direction: column; gap: 1rem; }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .info-icon {
+            width: 40px; height: 40px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-blue);
+            flex-shrink: 0;
+        }
+
+        .info-label { font-size: 0.8rem; color: var(--text-secondary); }
+        .info-value { font-size: 0.95rem; font-weight: 500; }
+
+        /* ── SKILLS ── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: border-color 0.3s;
+        }
+
+        .skill-category:hover { border-color: var(--accent-blue); }
+
+        .skill-category-title {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            font-family: 'Fira Code', monospace;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+        .skill-tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 212, 255, 0.08);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: var(--accent-blue);
+        }
+
+        /* ── PROJECTS ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .project-icon {
+            font-size: 1.8rem;
+            width: 50px; height: 50px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-links { display: flex; gap: 0.8rem; }
+
+        .project-link {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+
+        .project-link:hover { color: var(--accent-blue); }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+        .project-tag {
+            padding: 0.2rem 0.6rem;
+            background: rgba(124, 58, 237, 0.15);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #a78bfa;
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.2rem 0.6rem;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--accent-green);
+        }
+
+        .live-dot {
+            width: 6px; height: 6px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* ── EXPERIENCE ── */
+        .timeline { position: relative; padding-left: 2rem; }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2.4rem;
+            top: 0.3rem;
+            width: 12px; height: 12px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            border: 2px solid var(--bg-primary);
+        }
+
+        .timeline-date {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline-company {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .timeline-desc li { margin-bottom: 0.3rem; }
+
+        /* ── CONTACT ── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .contact-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-text p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent-blue);
+            transform: translateX(5px);
+        }
+
+        .contact-link i {
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+            width: 24px;
+        }
+
+        .contact-link-text { font-size: 0.85rem; color: var(--text-secondary); }
+        .contact-link-value { font-weight: 500; }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        footer span { color: var(--accent-blue); }
+
+        /* ── ANIMATIONS ── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .about-grid,
+            .contact-grid { grid-template-columns: 1fr; }
+            .hero-stats { gap: 1.5rem; }
+            nav .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <a href="#hero" class="nav-logo">&lt;SMK /&gt;</a>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="mailto:saimanjunathk7@gmail.com" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.85rem;">
+        <i class="fas fa-envelope"></i> Hire Me
+    </a>
+</nav>
+
+
+<!-- HERO -->
+<section id="hero">
+    <div class="hero-content">
+        <p class="hero-greeting">👋 Hello, I'm</p>
+        <h1 class="hero-name">Sai Manjunath<br>Kusupati</h1>
+        <h2 class="hero-title">
+            <span>Data Scientist & Data Engineer</span>
+        </h2>
+        <p class="hero-desc">
+            Building end-to-end data pipelines, ML models, and AI-powered systems
+            with 4+ years of experience. Passionate about turning raw data into
+            actionable insights at scale.
+        </p>
+        <div class="hero-btns">
+            <a href="#projects" class="btn btn-primary">
+                <i class="fas fa-rocket"></i> View Projects
+            </a>
+            <a href="https://github.com/saimanjunathk" target="_blank" class="btn btn-secondary">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/saimanjunathkusupati/" target="_blank" class="btn btn-secondary">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </div>
+        <div class="hero-stats">
+            <div>
+                <div class="stat-number">4+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div>
+                <div class="stat-number">6</div>
+                <div class="stat-label">Live Projects</div>
+            </div>
+            <div>
+                <div class="stat-number">150M+</div>
+                <div class="stat-label">Events/Day Processed</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+    <h2 class="section-title"><span>#</span> About Me</h2>
+    <div class="about-grid fade-in">
+        <div class="about-text">
+            <p>
+                I'm a <strong>Data Scientist & Data Engineer</strong> currently working at
+                <strong>Montgomery County HHS</strong>, where I build data infrastructure
+                and ML solutions that drive real-world impact.
+            </p>
+            <p>
+                With a <strong>Master's in Computer Science from UT Arlington</strong>,
+                I specialize in building end-to-end data systems — from real-time
+                streaming pipelines processing <strong>150M+ events/day</strong> to
+                AI-native SQL generation tools that significantly reduce engineering backlog.
+            </p>
+            <p>
+                I'm passionate about the intersection of <strong>Data Engineering,
+                Machine Learning, and AI</strong> — building systems that are not just
+                technically sound but also deliver measurable business value.
+            </p>
+            <p>
+                Currently preparing for roles at <strong>Tier 1 Quant firms and FAANG</strong>
+                companies, building a portfolio that demonstrates expertise across the
+                full data stack.
+            </p>
+        </div>
+        <div class="about-info">
+            <div class="info-item">
+                <div class="info-icon"><i class="fas fa-briefcase"></i></div>
+                <div>
+                    <div class="info-label">Current Role</div>
+                    <div class="info-value">Data Scientist / Engineer @ Montgomery County HHS</div>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div>
+                    <div class="info-label">Education</div>
+                    <div class="info-value">MS Computer Science — UT Arlington</div>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div>
+                    <div class="info-label">Location</div>
+                    <div class="info-value">Charlotte, North Carolina, USA</div>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                <div>
+                    <div class="info-label">Email</div>
+                    <div class="info-value">saimanjunathk7@gmail.com</div>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon"><i class="fas fa-circle"></i></div>
+                <div>
+                    <div class="info-label">Status</div>
+                    <div class="info-value" style="color: #10b981;">Open to Opportunities</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- SKILLS -->
+<section id="skills">
+    <h2 class="section-title"><span>#</span> Skills</h2>
+    <div class="skills-grid fade-in">
+        <div class="skill-category">
+            <div class="skill-category-title">
+                <i class="fas fa-database"></i> Data Engineering
+            </div>
+            <div class="skill-tags">
+                <span class="skill-tag">Apache Kafka</span>
+                <span class="skill-tag">Apache Spark</span>
+                <span class="skill-tag">Apache Airflow</span>
+                <span class="skill-tag">dbt</span>
+                <span class="skill-tag">Snowflake</span>
+                <span class="skill-tag">BigQuery</span>
+                <span class="skill-tag">DuckDB</span>
+                <span class="skill-tag">ClickHouse</span>
+                <span class="skill-tag">ETL/ELT</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <div class="skill-category-title">
+                <i class="fas fa-brain"></i> Machine Learning & AI
+            </div>
+            <div class="skill-tags">
+                <span class="skill-tag">XGBoost</span>
+                <span class="skill-tag">scikit-learn</span>
+                <span class="skill-tag">PyTorch</span>
+                <span class="skill-tag">LangChain</span>
+                <span class="skill-tag">RAG</span>
+                <span class="skill-tag">Vector DBs</span>
+                <span class="skill-tag">LLMs</span>
+                <span class="skill-tag">Isolation Forest</span>
+                <span class="skill-tag">MLflow</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <div class="skill-category-title">
+                <i class="fas fa-code"></i> Programming
+            </div>
+            <div class="skill-tags">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">PySpark</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Bash</span>
+                <span class="skill-tag">HTML/CSS</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <div class="skill-category-title">
+                <i class="fas fa-cloud"></i> Cloud & Infrastructure
+            </div>
+            <div class="skill-tags">
+                <span class="skill-tag">AWS</span>
+                <span class="skill-tag">GCP</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Kubernetes</span>
+                <span class="skill-tag">FastAPI</span>
+                <span class="skill-tag">Streamlit</span>
+                <span class="skill-tag">GitHub Actions</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <div class="skill-category-title">
+                <i class="fas fa-chart-bar"></i> Analytics & Visualization
+            </div>
+            <div class="skill-tags">
+                <span class="skill-tag">Pandas</span>
+                <span class="skill-tag">NumPy</span>
+                <span class="skill-tag">Plotly</span>
+                <span class="skill-tag">Tableau</span>
+                <span class="skill-tag">Power BI</span>
+                <span class="skill-tag">Metabase</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <div class="skill-category-title">
+                <i class="fas fa-chart-line"></i> Quantitative Finance
+            </div>
+            <div class="skill-tags">
+                <span class="skill-tag">Factor Research</span>
+                <span class="skill-tag">Backtesting</span>
+                <span class="skill-tag">Time Series</span>
+                <span class="skill-tag">Risk Metrics</span>
+                <span class="skill-tag">Portfolio Optimization</span>
+                <span class="skill-tag">Market Microstructure</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- PROJECTS -->
+<section id="projects">
+    <h2 class="section-title"><span>#</span> Projects</h2>
+    <div class="projects-grid fade-in">
+
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-icon">📈</div>
+                <div class="project-links">
+                    <span class="live-badge">
+                        <span class="live-dot"></span> Live
+                    </span>
+                    <a href="https://real-time-market-pipeline.streamlit.app/" target="_blank" class="project-link" title="Live Demo">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="https://github.com/saimanjunathk/real-time-market-pipeline" target="_blank" class="project-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="project-title">Real-Time Market Pipeline</div>
+            <div class="project-desc">
+                End-to-end streaming pipeline for live market data with ML-based
+                anomaly detection. Simulates Kafka → Spark Streaming → ClickHouse
+                with Isolation Forest anomaly detection.
+            </div>
+            <div class="project-tags">
+                <span class="project-tag">Kafka</span>
+                <span class="project-tag">Spark</span>
+                <span class="project-tag">ML</span>
+                <span class="project-tag">Streamlit</span>
+                <span class="project-tag">SQLite</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-icon">🏗️</div>
+                <div class="project-links">
+                    <span class="live-badge">
+                        <span class="live-dot"></span> Live
+                    </span>
+                    <a href="https://elt-data-warehouse.streamlit.app/" target="_blank" class="project-link" title="Live Demo">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="https://github.com/saimanjunathk/elt-data-warehouse" target="_blank" class="project-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="project-title">ELT Data Warehouse</div>
+            <div class="project-desc">
+                End-to-end ELT pipeline with dbt transformations, DuckDB warehouse,
+                and 24 automated data quality tests. Features raw → staging → marts
+                architecture with Streamlit analytics dashboard.
+            </div>
+            <div class="project-tags">
+                <span class="project-tag">dbt</span>
+                <span class="project-tag">DuckDB</span>
+                <span class="project-tag">Airflow</span>
+                <span class="project-tag">Streamlit</span>
+                <span class="project-tag">SQL</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-icon">📊</div>
+                <div class="project-links">
+                    <span class="live-badge">
+                        <span class="live-dot"></span> Live
+                    </span>
+                    <a href="https://quant-factor-research.streamlit.app/" target="_blank" class="project-link" title="Live Demo">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="https://github.com/saimanjunathk/quant-factor-research" target="_blank" class="project-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="project-title">Quant Factor Research Engine</div>
+            <div class="project-desc">
+                Quantitative factor research platform with momentum, mean reversion,
+                and value factors. Features backtesting engine, walk-forward
+                validation, XGBoost return prediction, and performance analytics.
+            </div>
+            <div class="project-tags">
+                <span class="project-tag">XGBoost</span>
+                <span class="project-tag">Backtesting</span>
+                <span class="project-tag">yfinance</span>
+                <span class="project-tag">Quant</span>
+                <span class="project-tag">ML</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-icon">🤖</div>
+                <div class="project-links">
+                    <span class="live-badge">
+                        <span class="live-dot"></span> Live
+                    </span>
+                    <a href="https://llm-data-platform.streamlit.app/" target="_blank" class="project-link" title="Live Demo">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="https://github.com/saimanjunathk/llm-data-platform" target="_blank" class="project-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="project-title">LLM Data Platform</div>
+            <div class="project-desc">
+                RAG pipeline + AI SQL Agent powered by Claude. Uses ChromaDB for
+                vector storage, Sentence Transformers for embeddings, and Claude
+                for natural language to SQL query generation.
+            </div>
+            <div class="project-tags">
+                <span class="project-tag">RAG</span>
+                <span class="project-tag">Claude</span>
+                <span class="project-tag">ChromaDB</span>
+                <span class="project-tag">LLM</span>
+                <span class="project-tag">SQL Agent</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-icon">⚡</div>
+                <div class="project-links">
+                    <a href="https://github.com/saimanjunathk/ml-feature-store" target="_blank" class="project-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="project-title">ML Feature Store</div>
+            <div class="project-desc">
+                Production-grade ML platform with feature store, MLflow experiment
+                tracking, model registry, FastAPI serving with A/B testing,
+                and Evidently drift monitoring.
+            </div>
+            <div class="project-tags">
+                <span class="project-tag">MLflow</span>
+                <span class="project-tag">FastAPI</span>
+                <span class="project-tag">MLOps</span>
+                <span class="project-tag">Evidently</span>
+                <span class="project-tag">A/B Testing</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-icon">📉</div>
+                <div class="project-links">
+                    <a href="https://github.com/saimanjunathk/order-book-analysis" target="_blank" class="project-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="project-title">Order Book Analysis</div>
+            <div class="project-desc">
+                HFT order book reconstruction and market microstructure analysis.
+                Computes bid-ask spread, order flow imbalance, VPIN, and market
+                impact with short-horizon price prediction models.
+            </div>
+            <div class="project-tags">
+                <span class="project-tag">HFT</span>
+                <span class="project-tag">Microstructure</span>
+                <span class="project-tag">LOBSTER</span>
+                <span class="project-tag">ML</span>
+                <span class="project-tag">Quant</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- EXPERIENCE -->
+<section id="experience">
+    <h2 class="section-title"><span>#</span> Experience</h2>
+    <div class="timeline fade-in">
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">March 2025 — Present</div>
+            <div class="timeline-title">Data Scientist / Data Engineer</div>
+            <div class="timeline-company">Montgomery County HHS · Charlotte, NC</div>
+            <ul class="timeline-desc">
+                <li>Building dimensional data warehouse with self-service analytics framework</li>
+                <li>Developed AI-native SQL generation tooling achieving significant backlog reduction</li>
+                <li>Designing metadata-driven ingestion framework with large-scale cloud migration</li>
+                <li>Building real-time telemetry processing engine handling 150M+ events/day</li>
+            </ul>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2022 — 2025</div>
+            <div class="timeline-title">Data Engineer</div>
+            <div class="timeline-company">Hughes Network Systems</div>
+            <ul class="timeline-desc">
+                <li>Built and maintained large-scale data pipelines for network analytics</li>
+                <li>Designed ETL workflows processing terabytes of network telemetry data</li>
+                <li>Implemented real-time monitoring dashboards for network performance</li>
+            </ul>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">May 2019 — July 2021</div>
+            <div class="timeline-title">Data Engineer</div>
+            <div class="timeline-company">Tata Consultancy Services</div>
+            <ul class="timeline-desc">
+                <li>Developed data pipelines and ETL processes for enterprise clients</li>
+                <li>Built analytics solutions using SQL, Python and BI tools</li>
+                <li>Collaborated with cross-functional teams on data infrastructure projects</li>
+            </ul>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2021 — 2022</div>
+            <div class="timeline-title">MS Computer Science</div>
+            <div class="timeline-company">University of Texas at Arlington</div>
+            <ul class="timeline-desc">
+                <li>Focused on Machine Learning, Data Mining, and Distributed Systems</li>
+                <li>Coursework in algorithms, AI, and cloud computing</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2 class="section-title"><span>#</span> Contact</h2>
+    <div class="contact-grid fade-in">
+        <div class="contact-text">
+            <h3>Let's Work Together</h3>
+            <p>
+                I'm actively looking for opportunities at <strong>Tier 1 Quant firms</strong>
+                and <strong>FAANG companies</strong> in Data Engineering, Data Science,
+                and ML Engineering roles. Feel free to reach out!
+            </p>
+            <a href="mailto:saimanjunathk7@gmail.com" class="btn btn-primary">
+                <i class="fas fa-paper-plane"></i> Send Email
+            </a>
+        </div>
+        <div class="contact-links">
+            <a href="mailto:saimanjunathk7@gmail.com" class="contact-link">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <div class="contact-link-text">Email</div>
+                    <div class="contact-link-value">saimanjunathk7@gmail.com</div>
+                </div>
+            </a>
+            <a href="https://github.com/saimanjunathk" target="_blank" class="contact-link">
+                <i class="fab fa-github"></i>
+                <div>
+                    <div class="contact-link-text">GitHub</div>
+                    <div class="contact-link-value">github.com/saimanjunathk</div>
+                </div>
+            </a>
+            <a href="https://www.linkedin.com/in/saimanjunathkusupati/" target="_blank" class="contact-link">
+                <i class="fab fa-linkedin"></i>
+                <div>
+                    <div class="contact-link-text">LinkedIn</div>
+                    <div class="contact-link-value">linkedin.com/in/saimanjunathkusupati</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+    <p>Designed & Built by <span>Sai Manjunath Kusupati</span> · 2026</p>
+</footer>
+
+
+<script>
+    // Fade in animation on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Smooth active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            if (window.scrollY >= section.offsetTop - 200) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.style.color = link.getAttribute('href') === `#${current}`
+                ? 'var(--accent-blue)'
+                : 'var(--text-secondary)';
+        });
+    });
+</script>
+
+</body>
+</html>
