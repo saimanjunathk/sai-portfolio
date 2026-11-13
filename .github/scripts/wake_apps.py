@@ -15,19 +15,24 @@ WAKE_BUTTON = "Yes, get this app back up!"
 
 def visit(page, url):
     page.goto(url, wait_until="domcontentloaded", timeout=120_000)
-    page.wait_for_timeout(5_000)
+
+    button = page.get_by_role("button", name=WAKE_BUTTON)
+    frame = page.locator('iframe[title="streamlitApp"]')
+
+    # wait up to 30s for whichever shows first: wake button or app frame
+    try:
+        button.or_(frame).first.wait_for(timeout=30_000)
+    except Exception:
+        pass
 
     status = "AWAKE"
-    button = page.get_by_role("button", name=WAKE_BUTTON)
     if button.count() > 0:
         button.first.click()
         status = "WOKE"
-        # the button disappears once the app starts booting
         button.first.wait_for(state="hidden", timeout=180_000)
 
-    # wait for the app frame to load, but do not fail if the selector changes
     try:
-        page.wait_for_selector('iframe[title="streamlitApp"]', timeout=180_000)
+        frame.first.wait_for(timeout=180_000)
     except Exception:
         print(f"  note: app frame not detected for {url}")
 
