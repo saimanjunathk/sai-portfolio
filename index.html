@@ -509,6 +509,16 @@
             .hero-stats { gap: 1.5rem; }
             nav .nav-links { display: none; }
         }
+        .exp-filter { display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .filter-btn {
+            padding: 0.4rem 1rem; background: transparent; color: var(--text-secondary);
+            border: 1px solid var(--border); border-radius: 20px; font-size: 0.85rem;
+            cursor: pointer; transition: all 0.3s; font-family: inherit;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            color: var(--accent-blue); border-color: var(--accent-blue);
+            background: rgba(0, 212, 255, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -570,63 +580,66 @@
 <!-- ABOUT -->
 <section id="about">
     <h2 class="section-title"><span>#</span> About Me</h2>
-    <div class="about-grid fade-in">
-        <div class="about-text">
-            <p>
-                I'm a <strong>Data Scientist/Engineer</strong> at <strong>Cyquent Inc. (Montgomery County HHS)</strong>,
-                building forecasting, causal inference and AI-powered analytics that drive
-                real program decisions.
-            </p>
-            <p>
-                With <strong>5+ years</strong> across government, telecom and enterprise
-                consulting, I work end to end: <strong>Snowflake and dbt</strong> data models,
-                <strong>PySpark</strong> pipelines, <strong>MLflow</strong> deployments and
-                <strong>LLM/RAG</strong> tooling. I hold an MS in Computer Science from UT Arlington.
-            </p>
-            <p>
-                I'm passionate about the intersection of <strong>Data Engineering,
-                Machine Learning, and AI</strong> building systems that are not just
-                technically sound but also deliver measurable business value.
-            </p>
+        <div class="exp-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="ds">Data Science</button>
+            <button class="filter-btn" data-filter="de">Data Engineering</button>
         </div>
-        <div class="about-info">
-            <div class="info-item">
-                <div class="info-icon"><i class="fas fa-briefcase"></i></div>
-                <div>
-                    <div class="info-label">Current Role</div>
-                    <div class="info-value">Data Scientist / Engineer @ Montgomery County HHS</div>
-                </div>
+        
+        <div class="timeline fade-in">
+        
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Mar 2025 to Present</div>
+                <div class="timeline-title">Data Scientist / Data Engineer</div>
+                <div class="timeline-company">Cyquent Inc. (Montgomery County HHS) · Gaithersburg, MD</div>
+                <ul class="timeline-desc">
+                    <li data-track="ds de">Built an AI-native natural language SQL tool using LangChain, Snowflake and ChromaDB that reduced the manual reporting backlog by 60%</li>
+                    <li data-track="de">Designed a dimensional data warehouse using dbt on Snowflake to enable self-service analytics and population health reporting</li>
+                    <li data-track="de">Developed a metadata-driven PySpark ingestion framework on AWS EMR and led a 2TB+ zero-downtime cloud migration</li>
+                    <li data-track="ds">Applied difference-in-differences and campaign attribution analysis to measure which programs and outreach changed outcomes</li>
+                    <li data-track="ds">Built forecasting models using Prophet, ARIMA and XGBoost with backtesting built into every release</li>
+                    <li data-track="ds">Built provider matching and content ranking models using two-tower retrieval and XGBoost rankers</li>
+                </ul>
             </div>
-            <div class="info-item">
-                <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
-                <div>
-                    <div class="info-label">Education</div>
-                    <div class="info-value">MS Computer Science at UT Arlington</div>
-                </div>
+        
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Aug 2023 to Feb 2025</div>
+                <div class="timeline-title">Data Scientist / Data Engineer</div>
+                <div class="timeline-company">Hughes Network Systems · Germantown, MD</div>
+                <ul class="timeline-desc">
+                    <li data-track="ds">Forecast customer usage and behavior from 150M+ daily telemetry records using Prophet, XGBoost and LightGBM on Snowflake and dbt</li>
+                    <li data-track="ds">Measured the impact of business changes on customer usage and retention using difference-in-differences, which informed a $2M+ business decision</li>
+                    <li data-track="ds de">Productionized models using MLflow and Airflow with statistical data-quality checks</li>
+                    <li data-track="de">Built a real-time telemetry processing engine handling 150M+ events per day using PySpark and Kafka</li>
+                    <li data-track="de">Built Snowflake and dbt pipelines that fed forecasting models and executive dashboards, with automated data-quality checks on telemetry inputs</li>
+                    <li data-track="ds de">Delivered Tableau and Power BI dashboards for operations, Sales and Finance teams on top of the modeled data</li>
+                    <li data-track="ds">Built ad tech models for audience targeting, bid optimization and ad performance, and modeled customer LTV in partnership with Sales and Finance</li>
+                    <li data-track="ds">Built plan recommendation and subscriber ranking models using collaborative filtering and matrix factorization</li>
+                </ul>
             </div>
-            <div class="info-item">
-                <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                <div>
-                    <div class="info-label">Location</div>
-                    <div class="info-value">Gaithersburg, Maryland, USA</div>
-                </div>
+        
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">May 2019 to Jul 2021</div>
+                <div class="timeline-title">Data Analyst</div>
+                <div class="timeline-company">Tata Consultancy Services · India</div>
+                <ul class="timeline-desc">
+                    <li data-track="ds">Built demand forecasting and price elasticity models using Python and SQL that generated $30K in additional revenue</li>
+                    <li data-track="ds">Supported the shift from flat-rate to tiered pricing for Tata Realty and Infrastructure Limited across its office, retail and residential businesses</li>
+                    <li data-track="de">Designed ETL processes for marketing analytics across multiple source systems, including cleansing, validation and integrity checks</li>
+                </ul>
             </div>
-            <div class="info-item">
-                <div class="info-icon"><i class="fas fa-envelope"></i></div>
-                <div>
-                    <div class="info-label">Email</div>
-                    <div class="info-value">ksai012798@gmail.com</div>
-                </div>
+        
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Aug 2021 to May 2023</div>
+                <div class="timeline-title">MS Computer Science</div>
+                <div class="timeline-company">University of Texas at Arlington</div>
             </div>
-            <div class="info-item">
-                <div class="info-icon"><i class="fas fa-circle"></i></div>
-                <div>
-                    <div class="info-label">Status</div>
-                    <div class="info-value" style="color: #10b981;">Open to Opportunities</div>
-                </div>
-            </div>
+        
         </div>
-    </div>
 </section>
 
 
@@ -1053,6 +1066,17 @@
                 : 'var(--text-secondary)';
         });
     });
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.timeline-desc li').forEach(li => {
+            const tracks = (li.dataset.track || '').split(' ');
+            li.style.display = (filter === 'all' || tracks.includes(filter)) ? '' : 'none';
+        });
+    });
+});
 </script>
 
 </body>
